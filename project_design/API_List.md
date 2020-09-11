@@ -21,7 +21,8 @@
 ```
 > Input 
     {
-        "foodName" : "milk"
+        "foodName" : "milk" , 
+        "foodCode" : "etc" (optional)
     }
 
 > Output  
@@ -61,7 +62,7 @@
 > Input 
     {
         "userName" : "Test",
-        "
+        
     }  
 > Output  
     {
