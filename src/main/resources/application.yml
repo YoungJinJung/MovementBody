@@ -1,0 +1,36 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/toyProject?serverTimezone=Asia/Seoul
+    username: root
+    password: MovementBody
+
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create #매 기동 시, Table을 create 것이다.
+      #ddl-auto: update #매 기동 시, Table을 update 것이다.
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false #JPA의 기본 전략을 쫓아가지 않을 것이다.
+    show-sql: true
+    properties:
+      hibernate.format_sql: true #SQL의 형태로 출력을 해줄 것이다.
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
