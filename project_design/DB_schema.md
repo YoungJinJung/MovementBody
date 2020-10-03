@@ -9,8 +9,9 @@
 3. 닉네임
 4. (+ 우리앱에서사용하는사용자의 고유번호/ 노필요?) → 닉네임 hashing 가지고 string hash값
 5. Create Time
+<s> 
 6. Modified Time
-
+</s>
 ## 사용자 신체정보
 
 ---
