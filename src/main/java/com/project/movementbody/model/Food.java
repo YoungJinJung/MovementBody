@@ -17,17 +17,17 @@ import javax.persistence.Id;
 @Builder
 public class Food {
     @Id
-    private int foodCode;
-
+    private String foodCode;
+    private String foodName;
     private FoodCategory foodCategory;
 
     @Column(length = 100)
     private String foodDescription;
 
-    private int foodCalorie;
-    private int carbon;
-    private int protein;
-    private int fat;
-    private int sodium;
-    private int sugar;
+    private double foodCalorie;
+    private double carbon;
+    private double protein;
+    private double fat;
+    private double sodium;
+    private double sugar;
 }
