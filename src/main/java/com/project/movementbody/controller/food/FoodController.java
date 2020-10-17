@@ -9,34 +9,39 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 public class FoodController {
+    Logger logger = Logger.getLogger(this.getClass().getName());
     @Autowired
     FoodService foodService;
 
-    @GetMapping("/foodInfo/{foodCode}")
-    public Food getFoodInformationByCode(@PathVariable String foodCode){
-        return foodService.findFood(foodCode);
+    @GetMapping("/foodInfo/code/{foodCode}")
+    public Food getFoodInformationByCode(@PathVariable String foodCode) {
+        return foodService.findFoodByCode(foodCode);
     }
 
     @GetMapping("/foodInfo")
-    public List<Food> getFoodList(){
+    public List<Food> getFoodList() {
         List<Food> foodList = foodService.findAllFoodList();
-        if(foodList == null) {
-            foodList = new ArrayList<>();
-            System.out.println("[INFO] Food List is Empty");
+        if (foodList == null || foodList.isEmpty()) {
+            logger.info("All Food List is Empty");
         }
         return foodList;
     }
 
-    @GetMapping("/foodInfo/{foodCategory}")
-    public List<Food> getCategoryFoodList(@PathVariable String foodCategory){
+    @GetMapping("/foodInfo/category/{foodCategory}")
+    public List<Food> getCategoryFoodList(@PathVariable String foodCategory) {
         List<Food> foodList = foodService.findFoodListByCategory(foodCategory);
-        if(foodList == null) {
-            foodList = new ArrayList<>();
-            System.out.println("[INFO] Categorise Food List is Empty");
+        if (foodList == null || foodList.isEmpty()) {
+            logger.info("Categorized Food List is Empty");
         }
         return foodList;
+    }
+
+    @GetMapping("/foodInfo/name/{foodName}")
+    public Food getFoodInformationByName(@PathVariable String foodName) {
+        return foodService.findFoodByName(foodName);
     }
 }
