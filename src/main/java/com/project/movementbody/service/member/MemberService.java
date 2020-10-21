@@ -13,15 +13,47 @@ public class MemberService {
     MemberRepository memberRepository;
     
     @Transactional
-    public int createMemberInfo(Member memberInfo) {
-    	  int result = memberRepository.createMemberInfo(memberInfo);
-    	  if(result <= 0 ) {
-    		  System.out.println(this.getClass().getSimpleName() + "Insert Error");
-    	  }
-    	  
-    	  return result;
+    public void create(Member member){
     	
+    	Member result = memberRepository.save(member);
+    	if(!result.getMemberId().isEmpty()) {
+    		System.out.println(result.getMemberId() + "Insert Member Success");
+    	}else {
+    		System.out.println(result.getMemberId() + "Insert Member Fail");
+    	}
+        
     }
     
+    @Transactional
+    public void update(Member member) {
+    	
+    	Member result = memberRepository.save(member);
+    	if(!result.getMemberId().isEmpty()) {
+    		System.out.println(result.getMemberId() + "Update Member Success");
+    	}else {
+    		System.out.println(result.getMemberId() + "Update Member Fail");
+    	}
+    }
+    
+    @Transactional
+    public Member read(String memberMemberId) {
+    	
+    	Member result = memberRepository.findByMemberId(memberMemberId);
+    	if(!result.getMemberId().isEmpty()) {
+    		System.out.println(result.getMemberId() + "Find Member Success");
+    	}else {
+    		System.out.println(result.getMemberId() + "Find Member Fail");
+    	}
+    	return result;
+    }
+    
+    @Transactional
+    public void delete(Member member) {
+    	try {
+    		memberRepository.delete(member);
+    	}catch(Exception e) {
+    		System.out.println("[회원정보DELETE] 에러발");
+    	}
+    }
     
 }
