@@ -60,5 +60,6 @@ public class Member {
 	public void setExerciseCode(String exerciseCode) {
 		this.exerciseCode = exerciseCode;
 	}
+	
 
 }
