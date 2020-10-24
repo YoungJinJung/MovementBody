@@ -2,17 +2,18 @@ package com.project.movementbody.controller.food;
 
 import com.project.movementbody.model.Food;
 import com.project.movementbody.service.food.FoodService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 @RestController
 public class FoodController {
-    Logger logger = Logger.getLogger(this.getClass().getName());
+    Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     FoodService foodService;
 
