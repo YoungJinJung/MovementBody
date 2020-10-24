@@ -20,8 +20,8 @@ public class EatingHistory {
     private int id;//auto_increment
 
     @OneToOne(fetch = FetchType.EAGER) // Many = History, One = User
-    @JoinColumn(name = "userId")
-    private User user;//DB는 Object를 저장할 수 있다. FK, 자바는 오브젝트를 저장할 수 있다.
+    @JoinColumn(name = "memberId")
+    private Member member;//DB는 Object를 저장할 수 있다. FK, 자바는 오브젝트를 저장할 수 있다.
 
     private TimeCode timeCode;
 
