@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -17,12 +16,12 @@ public class FoodController {
     @Autowired
     FoodService foodService;
 
-    @GetMapping("/foodInfo/code/{foodCode}")
+    @GetMapping("/api/v1/foodInfo/code/{foodCode}")
     public Food getFoodInformationByCode(@PathVariable String foodCode) {
         return foodService.findFoodByCode(foodCode);
     }
 
-    @GetMapping("/foodInfo")
+    @GetMapping("/api/v1/foodInfo")
     public List<Food> getFoodList() {
         List<Food> foodList = foodService.findAllFoodList();
         if (foodList == null || foodList.isEmpty()) {
@@ -31,7 +30,7 @@ public class FoodController {
         return foodList;
     }
 
-    @GetMapping("/foodInfo/category/{foodCategory}")
+    @GetMapping("/api/v1/foodInfo/category/{foodCategory}")
     public List<Food> getCategoryFoodList(@PathVariable String foodCategory) {
         List<Food> foodList = foodService.findFoodListByCategory(foodCategory);
         if (foodList == null || foodList.isEmpty()) {
@@ -40,7 +39,7 @@ public class FoodController {
         return foodList;
     }
 
-    @GetMapping("/foodInfo/name/{foodName}")
+    @GetMapping("/api/v1/foodInfo/name/{foodName}")
     public Food getFoodInformationByName(@PathVariable String foodName) {
         return foodService.findFoodByName(foodName);
     }
