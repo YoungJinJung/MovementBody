@@ -8,6 +8,5 @@ import com.project.movementbody.model.Member;
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 	Member findByMemberId(String memberId);
-	
 }
 

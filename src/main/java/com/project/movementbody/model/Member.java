@@ -20,7 +20,7 @@ public class Member {
     @Column(nullable = false, length = 100, unique = true)
     private String memberName;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = true, length = 50)
     private String email;
 
     @Enumerated(EnumType.STRING)
@@ -30,7 +30,7 @@ public class Member {
     private String birth;
 
     @Column(nullable = false)
-    private String gender;
+    private int gender;
 
     @Column(nullable = false)
     private double height;
@@ -39,5 +39,5 @@ public class Member {
     private double weight;
 
     @Column(nullable = false)
-    private String exerciseCode;
+    private int exerciseCode;
 }

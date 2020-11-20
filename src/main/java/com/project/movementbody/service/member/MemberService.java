@@ -1,13 +1,14 @@
 package com.project.movementbody.service.member;
 
+import com.project.movementbody.model.Member;
+import com.project.movementbody.repository.MemberRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.project.movementbody.model.Member;
-import com.project.movementbody.repository.MemberRepository;
+import java.util.Calendar;
 
 
 @Service
@@ -17,17 +18,20 @@ public class MemberService {
     MemberRepository memberRepository;
 
     @Transactional
-    public void create(Member member) {
+    public boolean create(Member member) {
+        member.setMemberName(member.getMemberId() + Calendar.getInstance().getTimeInMillis());
         Member result = memberRepository.save(member);
         boolean resultFlag = !result.getMemberId().isEmpty();
         printLogging("Save", resultFlag, result.getMemberId());
+        return resultFlag;
     }
 
     @Transactional
-    public void update(Member member) {
+    public boolean update(Member member) {
         Member result = memberRepository.save(member);
         boolean resultFlag = !result.getMemberId().isEmpty();
         printLogging("Update", resultFlag, result.getMemberId());
+        return resultFlag;
     }
 
     @Transactional
@@ -39,14 +43,17 @@ public class MemberService {
     }
 
     @Transactional
-    public void delete(Member member) {
+    public boolean delete(Member member) {
+        boolean resultFlag = false;
         try {
             memberRepository.delete(member);
             printLogging("Delete", true, member.getMemberId());
+            resultFlag = true;
         } catch (Exception e) {
             printLogging("Delete", false, member.getMemberId());
             e.printStackTrace();
         }
+        return resultFlag;
     }
 
     private void printLogging(String method, boolean flag, String logFactor) {

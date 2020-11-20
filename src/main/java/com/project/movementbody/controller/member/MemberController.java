@@ -14,8 +14,8 @@ public class MemberController {
 
     // 회원정보 CREATE
     @PostMapping("/api/v1/member/createMember")
-    public void createMember(@RequestBody Member member) {
-    	memberService.create(member);
+    public boolean createMember(@RequestBody Member member) {
+        return memberService.create(member);
     }
     
     // 회원정보 READ
@@ -26,14 +26,14 @@ public class MemberController {
     
     // 회원정보 UPDATE
     @PutMapping("/api/v1/member/updateMember")
-    public void updateMember(@RequestBody Member member) {
-    	memberService.update(member);
+    public boolean updateMember(@RequestBody Member member) {
+        return memberService.update(member);
     }
     
     // 회원정보 DELETE
    @DeleteMapping("/api/v1/member/deleteMember")
-   public void deleteMember(@RequestBody Member member) {
-	   memberService.delete(member);
+   public boolean deleteMember(@RequestBody Member member) {
+       return memberService.delete(member);
    }
     
 }
