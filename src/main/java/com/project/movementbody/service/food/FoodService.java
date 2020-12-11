@@ -1,7 +1,9 @@
 package com.project.movementbody.service.food;
 
 import com.project.movementbody.model.Food;
+import com.project.movementbody.model.FoodCategory;
 import com.project.movementbody.repository.FoodRepository;
+import com.project.movementbody.util.FoodCodeGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,29 @@ public class FoodService {
     Logger logger = Logger.getLogger(this.getClass().getName());
     @Autowired
     FoodRepository foodRepository;
+
+    @Transactional
+    public Food addFoodInfo(Food food){
+        String foodCode = FoodCodeGenerator.INSTANCE.getFoodCode();
+        food.setFoodCode(foodCode);
+        food.setFoodCategory(FoodCategory.CUSTOM);
+        Food result = foodRepository.save(food);
+        if (result == null) {
+            result = new Food();
+            logger.info("[addFoodInfo] Cannot Add Food Information");
+        }
+        return result;
+    }
+
+    @Transactional
+    public Food updateFoodInfo(Food food){
+        Food result = foodRepository.save(food);
+        if (result == null) {
+            result = new Food();
+            logger.info("[updateFoodInfo] Cannot Update Food Information");
+        }
+        return result;
+    }
 
     @Transactional
     public Food findFoodByCode(String foodCode) {

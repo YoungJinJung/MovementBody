@@ -5,9 +5,7 @@ import com.project.movementbody.service.food.FoodService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +14,16 @@ public class FoodController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     FoodService foodService;
+
+    @PostMapping("/api/v1/foodInfo")
+    public Food addFoodInformation(@RequestBody Food food) {
+        return foodService.addFoodInfo(food);
+    }
+
+    @PutMapping("/api/v1/foodInfo")
+    public Food updateFoodInformation(@RequestBody Food food) {
+        return foodService.updateFoodInfo(food);
+    }
 
     @GetMapping("/api/v1/foodInfo/code/{foodCode}")
     public Food getFoodInformationByCode(@PathVariable String foodCode) {
