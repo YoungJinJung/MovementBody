@@ -9,7 +9,6 @@ public class MovementbodyApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MovementbodyApplication.class, args);
-        FoodCodeGenerator.INSTANCE.init();
     }
 
 }

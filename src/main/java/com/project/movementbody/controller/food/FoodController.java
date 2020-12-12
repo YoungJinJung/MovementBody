@@ -17,22 +17,22 @@ public class FoodController {
 
     @PostMapping("/api/v1/foodInfo")
     public Food addFoodInformation(@RequestBody Food food) {
-        return foodService.addFoodInfo(food);
+        return foodService.create(food);
     }
 
     @PutMapping("/api/v1/foodInfo")
     public Food updateFoodInformation(@RequestBody Food food) {
-        return foodService.updateFoodInfo(food);
+        return foodService.update(food);
     }
 
     @GetMapping("/api/v1/foodInfo/code/{foodCode}")
     public Food getFoodInformationByCode(@PathVariable String foodCode) {
-        return foodService.findFoodByCode(foodCode);
+        return foodService.readFoodByCode(foodCode);
     }
 
     @GetMapping("/api/v1/foodInfo")
     public List<Food> getFoodList() {
-        List<Food> foodList = foodService.findAllFoodList();
+        List<Food> foodList = foodService.readAllFoodList();
         if (foodList == null || foodList.isEmpty()) {
             logger.info("All Food List is Empty");
         }
@@ -41,7 +41,7 @@ public class FoodController {
 
     @GetMapping("/api/v1/foodInfo/category/{foodCategory}")
     public List<Food> getCategoryFoodList(@PathVariable String foodCategory) {
-        List<Food> foodList = foodService.findFoodListByCategory(foodCategory);
+        List<Food> foodList = foodService.readFoodListByCategory(foodCategory);
         if (foodList == null || foodList.isEmpty()) {
             logger.info("Categorized Food List is Empty");
         }
@@ -50,6 +50,11 @@ public class FoodController {
 
     @GetMapping("/api/v1/foodInfo/name/{foodName}")
     public Food getFoodInformationByName(@PathVariable String foodName) {
-        return foodService.findFoodByName(foodName);
+        return foodService.readFoodByName(foodName);
+    }
+
+    @DeleteMapping("/api/v1/foodInfo")
+    public boolean deleteFoodInformation(@RequestBody Food food) {
+        return foodService.delete(food);
     }
 }
