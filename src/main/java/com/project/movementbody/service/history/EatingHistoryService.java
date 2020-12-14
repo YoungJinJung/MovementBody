@@ -26,7 +26,7 @@ public class EatingHistoryService {
 
     @Transactional
     public List<EatingHistory> selectByUserId(String userId) {//Find 조건에 따라 함수 만들기
-        List<EatingHistory> result = eatingHistoryRepository.findAllByMemberId(userId);
+        List<EatingHistory> result = eatingHistoryRepository.findAllByMember(userId);
         if(result.isEmpty()) {
             result = new ArrayList<>();
         }
@@ -42,8 +42,6 @@ public class EatingHistoryService {
     @Transactional
     public boolean delete(EatingHistory eatingHistory) {
         eatingHistoryRepository.delete(eatingHistory);
-        Optional<EatingHistory> result = eatingHistoryRepository.findById(eatingHistory.getId());
-        boolean resultFlag = result.isPresent();
-        return resultFlag;
+        return true;
     }
 }

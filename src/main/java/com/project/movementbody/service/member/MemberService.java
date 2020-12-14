@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 
-
 @Service
 public class MemberService {
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -37,7 +36,11 @@ public class MemberService {
     @Transactional
     public Member read(String memberMemberId) {
         Member result = memberRepository.findByMemberId(memberMemberId);
-        boolean resultFlag = !result.getMemberId().isEmpty();
+        boolean resultFlag = true;
+        if(result == null) {
+            result = new Member();
+            resultFlag = false;
+        }
         printLogging("Select", resultFlag, result.getMemberId());
         return result;
     }

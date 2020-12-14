@@ -5,8 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EatingHistoryRepository extends JpaRepository<EatingHistory, Integer> {
-    List<EatingHistory> findAllByMemberId(String memberId);
+    List<EatingHistory> findAllByMember(String memberId);
+
+    default Optional<EatingHistory> findById(String memberId) {
+        return null;
+    }
 }
