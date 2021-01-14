@@ -1,14 +1,13 @@
 package com.project.movementbody.controller.member;
 
+import com.project.movementbody.model.Member;
+import com.project.movementbody.service.member.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.project.movementbody.model.Member;
-import com.project.movementbody.service.food.FoodService;
-import com.project.movementbody.service.member.MemberService;
-
 @RestController
 public class MemberController {
+
     @Autowired
     MemberService memberService;
 

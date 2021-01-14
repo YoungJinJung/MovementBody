@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Member {
     @Id
+//    @Column(name="memberId", nullable = false)
     private String memberId;
 
     @Column(nullable = false, length = 100, unique = true)
