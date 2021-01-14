@@ -26,7 +26,7 @@ public class EatingHistoryService {
 
     @Transactional
     public List<EatingHistory> selectByUserId(String userId) {//Find 조건에 따라 함수 만들기
-        List<EatingHistory> result = eatingHistoryRepository.findAllByMember(userId);
+        List<EatingHistory> result = eatingHistoryRepository.findAllByMember_MemberId(userId);
         if(result.isEmpty()) {
             result = new ArrayList<>();
         }

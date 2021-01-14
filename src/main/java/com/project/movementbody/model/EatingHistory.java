@@ -8,6 +8,9 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -20,14 +23,18 @@ public class EatingHistory {
     private int id;//auto_increment
 
     @OneToOne(fetch = FetchType.EAGER) // Many = History, One = User
-    @JoinColumn(name = "memberId")
+    @JoinColumn(name = "member_memberId")
     private Member member;//DB는 Object를 저장할 수 있다. FK, 자바는 오브젝트를 저장할 수 있다.
 
     private TimeCode timeCode;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "foodCode")
-    private Food food;
+    @ManyToMany
+    @JoinTable(
+            name = "EatingHistory_Food",
+            joinColumns = @JoinColumn(name = "eatingHistory_id"),
+            inverseJoinColumns = @JoinColumn(name = "food_foodCode")
+    )
+    private List<Food> foodList = new ArrayList<>();
 
     private LocalDateTime eatingDate;
 

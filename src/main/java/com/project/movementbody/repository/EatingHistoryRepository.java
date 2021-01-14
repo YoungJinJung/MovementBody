@@ -9,9 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface EatingHistoryRepository extends JpaRepository<EatingHistory, Integer> {
-    List<EatingHistory> findAllByMember(String memberId);
-
-    default Optional<EatingHistory> findById(String memberId) {
-        return null;
-    }
+    List<EatingHistory> findAllByMember_MemberId(String memberId);
 }

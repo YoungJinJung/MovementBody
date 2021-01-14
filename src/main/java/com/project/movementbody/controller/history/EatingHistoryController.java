@@ -5,10 +5,7 @@ import com.project.movementbody.service.history.EatingHistoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,12 +20,12 @@ public class EatingHistoryController {
         return eatingHistoryService.insert(eatingHistory);
     }
 
-    @GetMapping("/api/v1/eatinghistory/read")
-    public List<EatingHistory> readEatingHistory(String userId){
+    @GetMapping("/api/v1/eatinghistory/read/{userId}")
+    public List<EatingHistory> readEatingHistory(@PathVariable String userId){
         return eatingHistoryService.selectByUserId(userId);
     }
 
-    @PostMapping("/api/v1/eatinghistory/update")
+    @PutMapping("/api/v1/eatinghistory/update")
     public boolean updateEatingHistory(@RequestBody EatingHistory eatingHistory) {
         return eatingHistoryService.insert(eatingHistory);
     }
