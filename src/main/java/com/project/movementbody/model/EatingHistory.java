@@ -1,5 +1,6 @@
 package com.project.movementbody.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,16 +20,20 @@ public class EatingHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;//auto_increment
 
-    @OneToOne(fetch = FetchType.EAGER) // Many = History, One = User
-    @JoinColumn(name = "memberId")
-    private Member member;//DB는 Object를 저장할 수 있다. FK, 자바는 오브젝트를 저장할 수 있다.
-
+//    @OneToOne(fetch = FetchType.EAGER) // Many = History, One = User
+//    @JoinColumn(name = "memberId")
+//    @ManyToOne
+//    @JoinColumn(name="memeberId")
+//    private Member member;
+    private String memberId;
     private TimeCode timeCode;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "foodCode")
-    private Food food;
-
+//    @OneToOne(fetch = FetchType.EAGER)
+//    @ManyToOne
+//    @JoinColumn(name = "foodCode")
+    private String foodCode;
+//    private Food food;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss" , timezone = "Asia/Seoul")
     private LocalDateTime eatingDate;
 
     @CreationTimestamp

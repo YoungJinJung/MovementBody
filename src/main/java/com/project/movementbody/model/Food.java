@@ -6,17 +6,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Entity(name = "Food")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Food {
     @Id
+//    @Column(name="foodCode")
     private String foodCode;
     private String foodName;
     private FoodCategory foodCategory;
