@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Calendar;
 
-
 @Service
 public class MemberService {
     Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -37,7 +36,11 @@ public class MemberService {
     @Transactional
     public Member read(String memberMemberId) {
         Member result = memberRepository.findByMemberId(memberMemberId);
-        boolean resultFlag = !result.getMemberId().isEmpty();
+        boolean resultFlag = true;
+        if(result == null) {
+            result = new Member();
+            resultFlag = false;
+        }
         printLogging("Select", resultFlag, result.getMemberId());
         return result;
     }
@@ -47,10 +50,10 @@ public class MemberService {
         boolean resultFlag = false;
         try {
             memberRepository.delete(member);
-            printLogging("Delete", true, member.getMemberId());
             resultFlag = true;
+            printLogging("Delete", resultFlag, member.getMemberId());
         } catch (Exception e) {
-            printLogging("Delete", false, member.getMemberId());
+            printLogging("Delete", resultFlag, member.getMemberId());
             e.printStackTrace();
         }
         return resultFlag;
@@ -58,9 +61,9 @@ public class MemberService {
 
     private void printLogging(String method, boolean flag, String logFactor) {
         if (flag) {
-            logger.info("[MemberService - " + method + "] Success - MemberID : " + logFactor);
+            logger.info("[" + this.getClass().getName()  + "- " + method + "] Success - MemberID : " + logFactor);
         } else {
-            logger.error("[MemberService - " + method + "] Failed - MemberID : " + logFactor);
+            logger.error("[" + this.getClass().getName()  + "- " + method + "] Failed - MemberID : " + logFactor);
         }
     }
 }
