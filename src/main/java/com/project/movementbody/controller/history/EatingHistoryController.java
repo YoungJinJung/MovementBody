@@ -30,7 +30,7 @@ public class EatingHistoryController {
     }
 
     @GetMapping("/eatinghistory/read/{userId}")
-    public List<EatingHistory> readEatingHistory(@PathVariable String userId){
+    public List<EatingHistory> getEatingHistory(@PathVariable String userId){
         return eatingHistoryService.selectByUserId(userId);
     }
 
@@ -39,4 +39,8 @@ public class EatingHistoryController {
         return eatingHistoryService.insert(eatingHistory);
     }
 
+    @DeleteMapping("/eatinghistory/delete")
+    public boolean deleteEatingHistory(@RequestBody EatingHistory eatingHistory) {
+        return eatingHistoryService.delete(eatingHistory);
+    }
 }
