@@ -28,7 +28,7 @@ public class MemberController {
     
     // 회원정보 READ
     @GetMapping("/member/readMember/{memberId}")
-    public Member readMember( @PathVariable String memberId) {
+    public Member getMember( @PathVariable String memberId) {
     	return memberService.read(memberId);
     }
     
