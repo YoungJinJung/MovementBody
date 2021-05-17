@@ -41,4 +41,8 @@ public class Member {
 
     @Column(nullable = false)
     private int exerciseCode;
+
+    @Column(nullable = false)
+    private int targetDietType;
+
 }
