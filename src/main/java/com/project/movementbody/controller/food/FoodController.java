@@ -19,8 +19,12 @@ public class FoodController {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    FoodService foodService;
+    final FoodService foodService;
+
+    public FoodController(FoodService foodService) {
+        this.foodService = foodService;
+    }
+
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK !!"),
             @ApiResponse(code = 500, message = "Internal Server Error !!"),

@@ -14,9 +14,11 @@ import java.util.Optional;
 
 @Service
 public class EatingHistoryService {
-    Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Autowired
-    EatingHistoryRepository eatingHistoryRepository;
+    final EatingHistoryRepository eatingHistoryRepository;
+
+    public EatingHistoryService(EatingHistoryRepository eatingHistoryRepository) {
+        this.eatingHistoryRepository = eatingHistoryRepository;
+    }
 
     @Transactional
     public boolean insert(EatingHistory eatingHistory) {
@@ -27,7 +29,7 @@ public class EatingHistoryService {
     @Transactional
     public List<EatingHistory> selectByUserId(String userId) {//Find 조건에 따라 함수 만들기
         List<EatingHistory> result = eatingHistoryRepository.findAllByMember_MemberId(userId);
-        if(result.isEmpty()) {
+        if (result.isEmpty()) {
             result = new ArrayList<>();
         }
         return result;

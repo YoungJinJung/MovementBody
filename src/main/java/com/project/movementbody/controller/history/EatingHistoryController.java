@@ -17,8 +17,12 @@ import java.util.List;
 @Api(value = "EatingHistoryController V1")
 public class EatingHistoryController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Autowired
-    EatingHistoryService eatingHistoryService;
+    final EatingHistoryService eatingHistoryService;
+
+    public EatingHistoryController(EatingHistoryService eatingHistoryService) {
+        this.eatingHistoryService = eatingHistoryService;
+    }
+
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK !!"),
             @ApiResponse(code = 500, message = "Internal Server Error !!"),

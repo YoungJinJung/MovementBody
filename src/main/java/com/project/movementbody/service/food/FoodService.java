@@ -18,8 +18,11 @@ import java.util.logging.Logger;
 @Service
 public class FoodService {
     Logger logger = Logger.getLogger(this.getClass().getName());
-    @Autowired
-    FoodRepository foodRepository;
+    final FoodRepository foodRepository;
+
+    public FoodService(FoodRepository foodRepository) {
+        this.foodRepository = foodRepository;
+    }
 
     @PostConstruct
     public void init() {
@@ -80,7 +83,7 @@ public class FoodService {
     @Transactional
     public List<Food> readAllFoodList() {
         List<Food> selectFoodList = foodRepository.findAll();
-        if (selectFoodList == null ) {
+        if (selectFoodList == null) {
             selectFoodList = new ArrayList<>();
             logger.info("[findFoodInfo] Success Find Food Information : FoodList Count is 0");
         } else {

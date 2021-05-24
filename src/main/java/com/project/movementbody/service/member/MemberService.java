@@ -13,8 +13,11 @@ import java.util.Calendar;
 @Service
 public class MemberService {
     Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Autowired
-    MemberRepository memberRepository;
+    final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     @Transactional
     public boolean create(Member member) {
@@ -37,7 +40,7 @@ public class MemberService {
     public Member read(String memberMemberId) {
         Member result = memberRepository.findByMemberId(memberMemberId);
         boolean resultFlag = true;
-        if(result == null) {
+        if (result == null) {
             result = new Member();
             resultFlag = false;
         }
@@ -61,9 +64,9 @@ public class MemberService {
 
     private void printLogging(String method, boolean flag, String logFactor) {
         if (flag) {
-            logger.info("[" + this.getClass().getName()  + "- " + method + "] Success - MemberID : " + logFactor);
+            logger.info("[" + this.getClass().getName() + "- " + method + "] Success - MemberID : " + logFactor);
         } else {
-            logger.error("[" + this.getClass().getName()  + "- " + method + "] Failed - MemberID : " + logFactor);
+            logger.error("[" + this.getClass().getName() + "- " + method + "] Failed - MemberID : " + logFactor);
         }
     }
 }

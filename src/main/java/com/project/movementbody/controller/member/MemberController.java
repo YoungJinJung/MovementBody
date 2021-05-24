@@ -13,8 +13,12 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "MemberController V1")
 public class MemberController {
 
-    @Autowired
-    MemberService memberService;
+    final MemberService memberService;
+
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK !!"),
             @ApiResponse(code = 500, message = "Internal Server Error !!"),
@@ -25,23 +29,23 @@ public class MemberController {
     public boolean createMember(@RequestBody Member member) {
         return memberService.create(member);
     }
-    
+
     // 회원정보 READ
     @GetMapping("/member/readMember/{memberId}")
-    public Member getMember( @PathVariable String memberId) {
-    	return memberService.read(memberId);
+    public Member getMember(@PathVariable String memberId) {
+        return memberService.read(memberId);
     }
-    
+
     // 회원정보 UPDATE
     @PutMapping("/member/updateMember")
     public boolean updateMember(@RequestBody Member member) {
         return memberService.update(member);
     }
-    
+
     // 회원정보 DELETE
-   @DeleteMapping("/member/deleteMember")
-   public boolean deleteMember(@RequestBody Member member) {
-       return memberService.delete(member);
-   }
-    
+    @DeleteMapping("/member/deleteMember")
+    public boolean deleteMember(@RequestBody Member member) {
+        return memberService.delete(member);
+    }
+
 }
