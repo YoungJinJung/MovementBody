@@ -27,6 +27,10 @@ public class CalorieController {
         return calorieService.select(memberId);
     }
 
+    @GetMapping("/calorie/readInfo/{memberId}/{timestamp}")
+    public Calories getCalorieInformationByMemberIdAndTimeStamp(@PathVariable String memberId, @PathVariable long timestamp) {
+        return calorieService.selectByTimeStamp(memberId, timestamp);
+    }
     // Target Calorie UPDATE
     @PutMapping("/calorie/updateInfo")
     public boolean updateCalorieInformation(@RequestBody Calories calories) {

@@ -1,5 +1,7 @@
 package com.project.movementbody.model;
 
+import com.sun.istack.NotNull;
+import com.sun.istack.Nullable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,10 +35,11 @@ public class EatingHistory {
             joinColumns = @JoinColumn(name = "eatingHistory_id"),
             inverseJoinColumns = @JoinColumn(name = "food_foodCode")
     )
-    private List<Food> foodList = new ArrayList<>();
+    private List<Food> foodList;
 
-    private LocalDateTime eatingDate;
+    @Column(nullable = false)
+    private long eatingDate;
 
     @CreationTimestamp
-    private LocalDateTime registerDate;
+    private LocalDateTime registerDate = LocalDateTime.now();
 }

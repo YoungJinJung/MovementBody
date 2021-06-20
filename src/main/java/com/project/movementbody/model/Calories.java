@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -18,7 +19,8 @@ public class Calories {
     private int id;
     @Column(nullable = false)
     private String memberId;
-
+    @Column(nullable = false)
+    private long eatingDate;
     @Column(nullable = false)
     private double totalCalorie;
     @Column(nullable = false)
